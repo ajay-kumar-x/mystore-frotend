@@ -7,11 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Products" />
+        <module name="WebInterface" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Authentication" target="19" />
-      <module name="WebInterface" target="19" />
     </bytecodeTargetLevel>
   </component>
 </project>
