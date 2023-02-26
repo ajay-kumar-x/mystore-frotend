@@ -1,0 +1,17 @@
+version: "3"
+services:
+  webinterfaceservice:
+    build: WebInterface/
+    container_name: webinterface_container
+    restart: always
+    hostname: localhost
+    ports:
+      - "80:80"
+
+  productservice:
+    build: Products/
+    container_name: product_container
+    restart: always
+    hostname: localhost
+    ports:
+      - "8081:8081"
