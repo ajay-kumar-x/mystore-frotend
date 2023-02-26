@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${appName}" ></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" type="text/css" href="index.css">
+
+    <script src="nav.js"></script>
+
+</head>
+
+<body class="w3-content" style="max-width:1200px">
+
+<div th:replace="~{nav.html}"></div>
+
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:250px">
+
+    <div th:replace="~{header.html}"></div>
+
+<div class="w3-container w3-text-grey">
+    <p th:text="${noOfproductFound}"></p>
+</div>
+
+<div class="w3-row" >
+    <div class="w3-col l3 s6" th:each="product : ${productList}">
+        <div class="w3-container" >
+            <img th:src="@{${product_service_url}+'/images/' + ${product.get('primary_image').asText()}}"
+                 style="width:100%"  th:onclick="@{'window.location.href = \'/product?id=\' + \'' + ${product.get('id').asText()} + '\';'}">
+            <p th:utext="${product.get('description').asText() + '<br/> <b>₹' + product.get('price').asText()} +'</b>'"></p>
+
+        </div>
+    </div>
+</div>
+
+
+<button onclick="history.back()">Back</button>
+
+
+<div th:replace="~{footer.html}"></div>
+
+</div>
+</body>
+</html>

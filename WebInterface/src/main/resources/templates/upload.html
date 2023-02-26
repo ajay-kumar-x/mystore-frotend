@@ -1,0 +1,44 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Upload Product</title>
+    <link rel="stylesheet" type="text/css" href="upload.css">
+    <script src="upload.js"></script>
+</head>
+<body>
+
+<h1>Hello !</h1>
+<p>Upload Products to <span th:text="${appName}"></span></p>
+
+<form action="http://192.168.1.2:8081/product/upload" method="post" enctype="multipart/form-data" >
+
+
+    <select name="category">
+        <option value="Saree">Saree</option>
+        <option value="Kurti">Kurti</option>
+        <option value="Jeans">Jeans</option>
+        <option value="Shirt">Shirt</option>
+        <option value="T-Shirt">T-Shirt</option>
+        <option value="UnderGarments">UnderGarments</option>
+        <option value="Blazzer">Blazzer</option>
+    </select>
+
+    <input type="number" name="price" required placeholder="Price">
+    <input type="text" name="description" placeholder="description" required>
+    <input type="number" name="quantity" required min="1" max="50" placeholder="quantity">
+    <!-- Primary Image-->
+    <input type="file" name="file" id="primaryImage" required title="Primary Image"/>
+    <!-- Other images-->
+    <input type="file" name="file1" id="image1"  title="Image 1"/>
+    <input type="file" name="file2" id="image2"  title="Image 2"/>
+    <input type="file" name="file3" id="image3"  title="Image 3"/>
+<br>
+    <button type="submit">Upload</button>
+</form>
+
+
+
+
+
+
+</body>
+</html>

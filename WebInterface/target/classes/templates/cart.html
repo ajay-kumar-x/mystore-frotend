@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title th:text="${appName}" ></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" type="text/css" href="cart.css">
+    <script src="nav.js"></script>
+
+
+</head>
+
+<body class="w3-content" style="max-width:1200px">
+
+<div th:replace="~{nav.html}"></div>
+
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:250px">
+
+    <div th:replace="~{header.html}"></div>
+
+
+    <!-- Create a container for the product list -->
+    <div id="product-list"></div>
+    <!-- Create a container for the total price -->
+    <div id="total-price"></div>
+    <!--This will be used in javascript function to fetch the product image-->
+    <script th:inline="javascript"> var product_service_url = [[${product_service_url}]]; </script>
+    <script src="cart.js"></script>
+
+
+    <button onclick="window.location.href='/'">Home</button>
+
+
+    <div th:replace="~{footer.html}"></div>
+
+</div>
+</body>
+</html>
