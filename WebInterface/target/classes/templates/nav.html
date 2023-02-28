@@ -1,0 +1,50 @@
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
+
+  <div class="w3-container w3-display-container w3-padding-16">
+    <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
+    <a href="/" style=" text-decoration: none;">
+    <h3 class="w3-wide" href="/"><b>SHYAM CLOTH STORE</b></h3>
+    </a>
+  </div>
+
+  <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+
+    <a href="/explore?category=saree"  class="w3-bar-item w3-button">Sarees</a>
+
+    <a href="#" class="w3-bar-item w3-button">Kurtis</a>
+    <a onclick="myAccFunc(this,'jeansSubcategory')" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align" id="myBtn">
+      Jeans <i class="fa fa-caret-right"></i>
+    </a>
+    <div id="jeansSubcategory" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+      <a href="/explore?category=jeans&subcategory=skinny" class="w3-bar-item w3-button w3-light-grey">Skinny</a>
+      <a href="/explore?category=jeans&subcategory=relaxed" class="w3-bar-item w3-button">Relaxed</a>
+      <a href="/explore?category=jeans&subcategory=cotton" class="w3-bar-item w3-button">Cotton</a>
+    </div>
+    <a href="#" class="w3-bar-item w3-button">Shirts</a>
+    <a href="#" class="w3-bar-item w3-button">T-Shirts</a>
+
+    <a href="#" class="w3-bar-item w3-button">UnderGarments</a>
+    <a href="#" class="w3-bar-item w3-button">Blazers</a>
+  </div>
+  <a href="#footer" class="w3-bar-item w3-button w3-padding">Contact</a>
+  <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding" onclick="document.getElementById('newsletter').style.display='block'">Newsletter</a>
+
+</nav>
+
+<!-- Top menu on small screens -->
+<header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
+  <a href="/" style=" text-decoration: none;">
+  <div class="w3-bar-item w3-wide">SHYAM CLOTH STORE</div>
+  </a>
+  <a href="javascript:void(0)" class="w3-bar-item w3-button  w3-right" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<!--<div class="w3-main" style="margin-left:250px">-->
+
+<!-- -->
