@@ -1,10 +1,21 @@
-version: "3"
-services:
+#version: "3"
+#services:
+#
+#  productservice:
+#    build: Products/
+#    container_name: product_container
+##    restart: always
+#    hostname: localhost
+#    ports:
+#      - "8081:8081"
 
-  productservice:
-    build: Products/
-    container_name: product_container
-#    restart: always
-    hostname: localhost
+version: '3'
+services:
+  products:
+    build:
+      context: .
+      dockerfile: Products/Dockerfile
+    volumes:
+      - ./Products:/app/Products
     ports:
       - "8081:8081"

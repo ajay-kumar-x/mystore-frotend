@@ -91,6 +91,8 @@ public class Controller {
     public String cart(Model model) {
         model.addAttribute("appName", appName);
         model.addAttribute("product_service_url",PRODUCT_SERVICE_URL);
+        model.addAttribute("productSearched","Cart"); //this will be used as showing on top of product
+
         return "cart";
     }
 

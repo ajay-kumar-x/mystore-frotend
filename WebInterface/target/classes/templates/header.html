@@ -1,0 +1,48 @@
+<!-- Push down content on small screens -->
+<div class="w3-hide-large" style="margin-top:83px"></div>
+
+
+<!-- Top header -->
+<header class="w3-container w3-xlarge">
+  <p class="w3-left" th:text="${#strings.capitalizeWords(productSearched)}"></p>
+  <!-- Cart and Search button-->
+  <p class="w3-right">
+
+<!--    <button class="fa fa-shopping-cart w3-margin-right" onclick="window.location.href='/cart'" data-badge="5"></button>-->
+
+    <span class="p1 fa-stack" data-count="0" onclick="window.location.href='/cart'">
+    <button class="fa fa-shopping-cart w3-margin-right" ></button>
+ </span>
+    <style>
+    .p1[data-count]:after{
+  position:absolute;
+  right:10%;
+  top:8%;
+  content: attr(data-count);
+  font-size:40%;
+  padding:.2em;
+  border-radius:50%;
+  line-height:1em;
+  color: white;
+  background:rgba(255,0,0,.85);
+  text-align:center;
+  min-width: 1em;
+  font-weight:bold;
+}
+  </style>
+    <script>
+      let cart = JSON.parse(localStorage.getItem("products"));
+let numItems = cart ? cart.length : 0;
+
+// Get a reference to the cart icon element
+let cartIcon = document.querySelector(".fa-stack");
+
+// Update the cart icon element to display the current number of items
+cartIcon.setAttribute("data-count", numItems);
+    </script>
+
+    <i class="fa fa-search"></i>
+  </p>
+
+
+</header>
