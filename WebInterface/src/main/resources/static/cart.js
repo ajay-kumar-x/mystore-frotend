@@ -4,8 +4,14 @@
   // Get a reference to the HTML element where you want to render the product list
   let productList = document.getElementById("product-list");
 
-    // Get a reference to the HTML element where you want to display the total price
-      let total = document.getElementById("total-price");
+  // Get a reference to the HTML element where you want to display the total price
+   let total = document.getElementById("total-price");
+
+if(products === null || products.length == 0){
+ document.getElementById("buy-now-btn").style.display= "none";
+ products= [];
+  }
+
 
   // Loop through the array of products and generate HTML elements for each product
   for (let i = 0; i < products.length; i++) {
@@ -66,6 +72,8 @@
                total.textContent = "Cart is empty";
                // Update the cart icon element to display the current number of items
                 cartIcon.setAttribute("data-count", 0);
+                //hiding the buy now btn
+                document.getElementById("buy-now-btn").style.display= "none";
             } else {
               products.splice(i,1);
               localStorage.setItem("products", JSON.stringify(products));

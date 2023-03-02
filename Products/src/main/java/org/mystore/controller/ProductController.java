@@ -51,7 +51,7 @@ public class ProductController {
         product.setOther_images(otherImages.trim());
 
         productService.saveProduct(product);
-        System.err.println("Uploading");
+        System.err.println("Uploaded");
         return product.getPrimary_image();
     }
 
@@ -69,6 +69,5 @@ public class ProductController {
     public List<Product> findById(@PathVariable String category) {
         return productService.findByCategory(category);
     }
-
 
 }

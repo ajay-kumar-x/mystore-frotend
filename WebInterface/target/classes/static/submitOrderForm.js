@@ -6,9 +6,9 @@ function submitForm(event) {
 
         // Perform the desired operations like checking mobile number
 
-        var field1 = document.getElementById("mobile-number").value;
-        var field2 = document.getElementById("cnf-mobile-number").value;
-        if (field1 === field2) {
+        var mobile_number = document.getElementById("mobile-number").value;
+        var cnf_mobile_number = document.getElementById("cnf-mobile-number").value;
+        if (mobile_number === cnf_mobile_number) {
              // The values are the same
 
              // Get the object from local storage
@@ -17,13 +17,14 @@ function submitForm(event) {
              // Set the value of the hidden input field to the JSON string representation of the object
              document.getElementById('products').value = JSON.stringify(products_list);
             //now remove the product details from localStorage
-             localStorage.removeItem("products");
+             localStorage.setItem("products", "[]");
+             localStorage.setItem("mobile_number", mobile_number);
 
           // Submit the form
           event.target.submit();
 
         } else {
           // The values are different
-          alert("The values in the two fields are different.");
+          alert("Mobile number not matching.");
         }
       }

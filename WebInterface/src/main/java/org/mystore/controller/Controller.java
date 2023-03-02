@@ -17,7 +17,7 @@ public class Controller {
     @Value("${spring.application.name}")
     String appName;
 
-    static final String PRODUCT_SERVICE_URL="http://192.168.1.2:8081";
+    static final String PRODUCT_SERVICE_URL="http://192.168.1.2:8080";
 
 
 
@@ -92,13 +92,17 @@ public class Controller {
         model.addAttribute("appName", appName);
         model.addAttribute("product_service_url",PRODUCT_SERVICE_URL);
         model.addAttribute("productSearched","Cart"); //this will be used as showing on top of product
-
         return "cart";
     }
 
+
+
+
+    //.................................for  ADMIN.........................................
     @GetMapping("/upload")
     public String productUpload(Model model) {
         model.addAttribute("appName", appName);
+        model.addAttribute("product_service_url",PRODUCT_SERVICE_URL);
         return "upload";
     }
 

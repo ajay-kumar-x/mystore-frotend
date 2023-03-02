@@ -9,7 +9,7 @@
 <h1>Hello !</h1>
 <p>Upload Products to <span th:text="${appName}"></span></p>
 
-<form action="http://192.168.1.2:8081/product/upload" method="post" enctype="multipart/form-data" >
+<form th:action="@{${product_service_url}+'/product/upload'}" method="post" enctype="multipart/form-data" >
 
 
     <select name="category">
