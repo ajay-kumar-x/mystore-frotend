@@ -1,16 +1,21 @@
 package org.mystore.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import org.mystore.model.OrderDetail;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @org.springframework.stereotype.Controller
 public class Controller {
@@ -35,6 +40,7 @@ public class Controller {
         RestTemplate restTemplate = new RestTemplate();
         String url = PRODUCT_SERVICE_URL+"/product/category/"+category;
         String response = restTemplate.getForObject(url, String.class);
+//        System.out.println(response);
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode productArray = objectMapper.readTree(response);
 
@@ -95,6 +101,24 @@ public class Controller {
         return "cart";
     }
 
+
+    //we will not use this directly in our microservice
+    //we will call OrderController's /track/{mobile-number} method which will get the order details and put in model attribute and redirect here
+    //also be used by /submit order
+    @GetMapping("/track-order")
+    public String trackOrder(@ModelAttribute("orderDetailString")  String orderDetailString,
+                             Model model) throws JsonProcessingException {
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<OrderDetail> orderDetailJson = objectMapper.readValue(orderDetailString, new TypeReference<List<OrderDetail>>(){});
+
+        model.addAttribute("appName", appName);
+        model.addAttribute("product_service_url",PRODUCT_SERVICE_URL);
+
+        model.addAttribute("orderDetailJson", orderDetailJson);
+
+        return "track-order";
+    }
 
 
 

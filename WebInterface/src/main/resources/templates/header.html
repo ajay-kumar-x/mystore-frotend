@@ -3,13 +3,15 @@
 
 
                 <!-- Top header -->
-<header class="w3-container w3-xlarge">
-  <p class="w3-left" th:text="${#strings.capitalizeWords(productSearched)}"></p>
-  <!--....................Search, Cart, Track Order button............................-->
-  <p class="w3-right">
+<header class="w3-container w3-xlarge" >
+    <p class="w3-left" th:text="${#strings.capitalizeWords(productSearched)}" style="margin-bottom: 0;"></p>
+    <i class="fa fa-search w3-left" style="margin-top: 0; display: block;"></i>
+
+
+    <p class="w3-right " style="margin-top:0">
 
       <!--........Search button......-->
-      <i class="fa fa-search"></i>
+<!--      <i class="fa fa-search "></i>-->
 
       <!--........Cart button......-->
     <span class="p1 fa-stack" data-count="0" onclick="window.location.href='/cart'">
@@ -57,8 +59,15 @@ cartIcon.setAttribute("data-count", numItems);
         <div class="w3-container w3-white w3-center">
             <i onclick="document.getElementById('track-order').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
             <h3 class="w3-wide">Track Order</h3>
-            <p><input class="w3-input w3-border" type="tel" placeholder="Enter mobileNumber to track order" required></p>
-            <button type="button" class="w3-button w3-padding-large w3-red w3-margin-bottom" onclick="document.getElementById('track-order').style.display='none'">Track</button>
+            <p><input class="w3-input w3-border" type="tel" id="mobile-number-to-track" placeholder="Enter mobileNumber to track order" required></p>
+            <button type="button" class="w3-button w3-padding-large w3-red w3-margin-bottom" onclick="trackOrder()" >Track</button>
+<!--            onclick="document.getElementById('track-order').style.display='none'"-->
+            <script>
+                function trackOrder(){
+                 var mobile_number = document.getElementById("mobile-number-to-track").value;
+                 window.location.href ='http://'+ window.location.hostname +':8080/orders/track/' + mobile_number;
+                }
+            </script>
         </div>
     </div>
 </div>

@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+   <title th:text="${appName}" ></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <script src="nav.js"></script>
+
+<style>
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: #ddd;
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+
+
+
+</style>
+</head>
+
+<body class="w3-content" style="max-width:1200px">
+
+<div th:replace="~{nav.html}"></div>
+
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:250px">
+
+    <div th:replace="~{header.html}"></div>
+
+
+
+
+    <div class="table-wrapper">
+
+
+        <table>
+            <thead>
+            <tr>
+                <th>OrderID</th>
+                <th>Customer Name</th>
+                <th>Address</th>
+                <th>Mobile Number</th>
+                <th>totalPrice</th>
+                <th>Status</th>
+                <th>Products</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="od : ${orderDetailJson}">
+                <td th:text="${od.id}"></td>
+                <td th:text="${od.customerName}"></td>
+                <td th:text="${od.address}"></td>
+                <td th:text="${od.mobileNumber}"></td>
+                <td th:text="'₹' + ${od.totalPrice}"></td>
+                <td>
+        <span th:if="${od.status == 'inProgress'}">
+          <i class="fa fa-spinner" aria-hidden="true"></i>In Progress
+        </span>
+                    <span th:unless="${od.status == 'inProgress'}">
+          <i class="fa fa-check" aria-hidden="true"></i> Completed
+        </span>
+                </td>
+                <td>
+                    <ul>
+                        <li th:each="product : ${od.products}">
+                            <div style="display: flex; align-items: center;">
+                                <img th:src="@{${product_service_url}+'/images/' + ${product.primary_image}}" alt="Product Image" style="margin-right: 1rem; width: 100px; height: 100px; object-fit: cover;"/>
+                                <div style="flex: 1;">
+                                    <p th:text="${product.description}"></p>
+                                    <p th:text="'₹' +${product.price}"></p>
+                                    <p th:text="'Size: ' +${product.size}"></p>
+                                    <p th:text="'Qty: ' +${product.quantity}"></p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+</div>
+
+
+
+    <div th:replace="~{footer.html}"></div>
+
+</div>
+
+
+
+
+</body>
+</html>

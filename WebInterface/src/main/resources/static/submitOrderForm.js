@@ -15,7 +15,10 @@ function submitForm(event) {
               const products_list = JSON.parse(localStorage.getItem('products'));
 
              // Set the value of the hidden input field to the JSON string representation of the object
-             document.getElementById('products').value = JSON.stringify(products_list);
+             document.getElementById('products-hidden').value = JSON.stringify(products_list);
+
+             //setting the total price in the hidden input field
+            document.getElementById('total-price-hidden').value = parseFloat(document.getElementById('total-price').textContent.split('₹')[1]);
             //now remove the product details from localStorage
              localStorage.setItem("products", "[]");
              localStorage.setItem("mobile_number", mobile_number);

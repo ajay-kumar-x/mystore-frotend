@@ -16,11 +16,15 @@ function addToCart(product,str){
                }
                productArray= JSON.parse(localStorage.getItem('products'));
                if(productArray == null)  productArray=[];
+               //updating the productArray
                productArray.push(item);
+
+                //updating the count of product in cart icon
+                let cartIcon = document.querySelector(".fa-stack");
+                 cartIcon.setAttribute("data-count", productArray.length);
 
                console.log(productArray);
              localStorage.setItem("products", JSON.stringify(productArray));
 
-              // var user = JSON.parse(localStorage.getItem('user'));
 
 }

@@ -13,6 +13,8 @@ public class Orders {
     private String mobileNumber;
 
     private String status;
+    private  double totalPrice;
+
 
 
     @Column(length = -1)   //longtext -> to set no limit on length of product lists
@@ -65,12 +67,20 @@ public class Orders {
     public void setStatus(String status) {
         this.status = status;
     }
+    public double getTotalPrice() {
+        return totalPrice;
+    }
 
-    public Orders(String customerName, String address, String mobileNumber, String status, String products) {
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public Orders(String customerName, String address, String mobileNumber, String status,double totalPrice, String products) {
         this.customerName = customerName;
         this.address = address;
         this.mobileNumber = mobileNumber;
         this.status=status;
+        this.totalPrice=totalPrice;
         this.products = products;
     }
 
@@ -79,13 +89,13 @@ public class Orders {
 
     @Override
     public String toString() {
-        return "Orders{" +
-                "id=" + id +
-                ", customerName='" + customerName + '\'' +
-                ", address='" + address + '\'' +
-                ", mobileNumber='" + mobileNumber + '\'' +
-                ", status='" + status + '\'' +
-                ", products='" + products + '\'' +
+        return "{" + "\"id\":" + id +
+                ", \"customerName\":\"" + customerName + "\"" +
+                ", \"address\":\"" + address + "\"" +
+                ", \"mobileNumber\":\"" + mobileNumber + "\"" +
+                ", \"status\":\"" + status + "\"" +
+                ", \"totalPrice\":\"" + totalPrice + "\"" +
+                ", \"products\":" + products +
                 '}';
     }
 }
