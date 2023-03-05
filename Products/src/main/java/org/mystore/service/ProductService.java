@@ -27,7 +27,15 @@ public class ProductService {
     }
 
     public List<Product> findByCategory(String category){
-        return productRepository.findByCategory(category);
+        return productRepository.findByCategoryOrderByIdDesc(category);
+    }
+    public List<Product> findProductsByCategoryAndSubcategory(String category, String subcategory) {
+        return productRepository.findByCategoryAndSubcategoryOrderByIdDesc(category, subcategory);
+    }
+
+    public Product updateProduct(Product updatedProduct) {
+        Product savedProduct = productRepository.save(updatedProduct);
+        return savedProduct;
     }
 
 }

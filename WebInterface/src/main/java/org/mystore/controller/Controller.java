@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import org.mystore.model.OrderDetail;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;
@@ -15,7 +14,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @org.springframework.stereotype.Controller
 public class Controller {
@@ -38,7 +36,7 @@ public class Controller {
                                  @RequestParam(name = "subcategory", required = false) String subcategory, Model model) throws JsonProcessingException {
 
         RestTemplate restTemplate = new RestTemplate();
-        String url = PRODUCT_SERVICE_URL+"/product/category/"+category;
+        String url = PRODUCT_SERVICE_URL+"/product/find-similar?category="+category+"&subcategory="+subcategory;
         String response = restTemplate.getForObject(url, String.class);
 //        System.out.println(response);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -70,7 +68,8 @@ public class Controller {
 
 
 
-        String urlForAllProductInSameCategory = PRODUCT_SERVICE_URL+"/product/category/"+product.get("category").asText();
+        String urlForAllProductInSameCategory = PRODUCT_SERVICE_URL+"/product/find-similar?category="+product.get("category").asText()+"&subcategory="+product.get("subcategory").asText();
+
         String allProductInString = restTemplate.getForObject(urlForAllProductInSameCategory, String.class); //All product detail with that category in string format
         JsonNode allProduct=objectMapper.readTree(allProductInString);
 

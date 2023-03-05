@@ -3,49 +3,48 @@
 
 
                 <!-- Top header -->
-<header class="w3-container w3-xlarge" >
-    <p class="w3-left" th:text="${#strings.capitalizeWords(productSearched)}" style="margin-bottom: 0;"></p>
-    <i class="fa fa-search w3-left" style="margin-top: 0; display: block;"></i>
+<header class=" w3-xlarge w3-bar" >
 
+    <p class="w3-left w3-bar-item" style="margin: 0; ">
+        <span class="w3-left" th:text="${#strings.capitalizeWords(productSearched)}" ></span>
+    </p>
+    <!--........Search button......-->
+    <i class="fa fa-search w3-bar-item w3-center"></i>
 
-    <p class="w3-right " style="margin-top:0">
-
-      <!--........Search button......-->
-<!--      <i class="fa fa-search "></i>-->
-
+    <p class="w3-right w3-bar-item " style="margin: 0;">
       <!--........Cart button......-->
-    <span class="p1 fa-stack" data-count="0" onclick="window.location.href='/cart'">
-    <button class="fa fa-shopping-cart w3-margin-right" ></button>
- </span>
-    <style>
-    .p1[data-count]:after{
-  position:absolute;
-  right:10%;
-  top:8%;
-  content: attr(data-count);
-  font-size:40%;
-  padding:.2em;
-  border-radius:50%;
-  line-height:1em;
-  color: white;
-  background:rgba(255,0,0,.85);
-  text-align:center;
-  min-width: 1em;
-  font-weight:bold;
-}
-  </style>
-    <script>
-      let cart = JSON.parse(localStorage.getItem("products"));
-let numItems = cart ? cart.length : 0;
+         <span class="p1 fa-stack" data-count="0" onclick="window.location.href='/cart'">
+            <button class="fa fa-shopping-cart w3-right" style="margin-right:5px"></button>
+         </span>
+            <style>
+               .p1[data-count]:after{
+                  position:absolute;
+                  right:10%;
+                  top:8%;
+                  content: attr(data-count);
+                  font-size:40%;
+                  padding:.2em;
+                  border-radius:50%;
+                  line-height:1em;
+                  color: white;
+                  background:rgba(255,0,0,.85);
+                  text-align:center;
+                  min-width: 1em;
+                  font-weight:bold;
+               }
+            </style>
+            <script>
+                let cart = JSON.parse(localStorage.getItem("products"));
+                let numItems = cart ? cart.length : 0;
 
-// Get a reference to the cart icon element
-let cartIcon = document.querySelector(".fa-stack");
+                // Get a reference to the cart icon element
+                let cartIcon = document.querySelector(".fa-stack");
 
-// Update the cart icon element to display the current number of items
-cartIcon.setAttribute("data-count", numItems);
-    </script>
+                // Update the cart icon element to display the current number of items
+                cartIcon.setAttribute("data-count", numItems);
+            </script>
       <!--........Track Order button......-->
-      <button class="fa fa-truck w3-margin-right" aria-hidden="true" onclick="document.getElementById('track-order').style.display='block'"></button>
+      <button class="fa fa-truck w3-right" aria-hidden="true" onclick="document.getElementById('track-order').style.display='block'"></button>
   </p>
 
 

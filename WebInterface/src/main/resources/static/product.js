@@ -28,3 +28,7 @@ function addToCart(product,str){
 
 
 }
+
+function makePhoneCall(phoneNumber){
+         window.location.href = 'tel:' + phoneNumber;
+}

@@ -71,7 +71,7 @@
       <recent name="$PROJECT_DIR$/WebInterface/src/main/templates" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main (3)">
+  <component name="RunManager" selected="Application.Main (2)">
     <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.mystore.Main" />
       <module name="MyStore" />
@@ -144,8 +144,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main (3)" />
         <item itemvalue="Application.Main (2)" />
+        <item itemvalue="Application.Main (3)" />
         <item itemvalue="Docker.Products/Dockerfile build" />
         <item itemvalue="Docker.Products/Dockerfile build" />
         <item itemvalue="Application.Main (1)" />

@@ -42,7 +42,7 @@
       </select>
     </div>
     <!-- Quantity will be displayed when the Size string is null -->
-    <div th:if="${product.get('size').asText() eq 'null' or product.get('size').asText() eq ''}">
+    <div th:if="${(product.get('size').asText() eq 'null' or product.get('size').asText() eq '' ) and product.get('quantity').asInt() >=1}">
       <label for="quantity">Qnt:</label>
       <select name="quantity" id="quantity">
           <option th:each="i : ${#numbers.sequence(1,product.get('quantity').asInt())}" th:value="${i}" th:text="${i}"></option>
@@ -53,9 +53,18 @@
     <script th:inline="javascript"> var productDetail = [[${product}]]; </script>
 
     <!-- Add to cart and Buy now button -->
+    <div th:if="${product.get('quantity').asInt() >=1}">
     <button class="fa fa-cart-plus " aria-hidden="true" style="width:45%; height:30px; margin-bottom:20px; margin-left:10px; "
             onclick="addToCart(productDetail)"> Add to Cart</button>
     <button class="fa fa-shopping-cart" style="width:45%; height:30px; margin-bottom:20px; margin-right:10px;" onclick="addToCart(productDetail,'buyNow') ; window.location.href='/cart'" > Buy Now</button>
+   </div>
+    <!-- Out of stock will be displayed if quantity is less than 1 -->
+    <div th:unless="${product.get('quantity').asInt() >= 1}">
+      <button class="fa fa-frown-o " aria-hidden="true" style="width:100%; height:30px; margin-bottom:20px; " onclick="makePhoneCall('+916294167926')">
+        Currently Out Of Stock, <i class="fa fa-phone" aria-hidden="true"></i> Call Us to get it early</button>
+
+    </div>
+
   </div>
 
 

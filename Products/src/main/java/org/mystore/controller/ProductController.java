@@ -65,9 +65,14 @@ public class ProductController {
         return productService.findAllProduct();
     }
 
-    @GetMapping("category/{category}")
-    public List<Product> findById(@PathVariable String category) {
-        return productService.findByCategory(category);
+    @GetMapping("/find-similar")
+    public List<Product> findByCategorySubcategory(@RequestParam("category") String category,
+                                                   @RequestParam(name = "subcategory", required = false) String subcategory) {
+
+        if(subcategory==null || subcategory.toLowerCase().trim().equals("null") || subcategory.trim().equals("")){
+            return productService.findByCategory(category);
+        }
+        return productService.findProductsByCategoryAndSubcategory(category,subcategory);
     }
 
 }
