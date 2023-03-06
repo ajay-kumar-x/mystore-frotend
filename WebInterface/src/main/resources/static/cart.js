@@ -31,6 +31,7 @@ if(products === null || products.length == 0){
     let detailsContainer = document.createElement("div");
     detailsContainer.classList.add("product-details");
 
+
     // Add the product description
     let description = document.createElement("p");
     description.textContent = product.description;

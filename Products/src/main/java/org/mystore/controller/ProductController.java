@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,18 +24,22 @@ public class ProductController {
     @PostMapping("/upload")
     public String uploadProduct(@RequestParam("file") MultipartFile file,
                                 @RequestParam("category") String category,
+                                @RequestParam(name = "subcategory", required = false) String subcategory,
                                 @RequestParam("description") String description,
                                 @RequestParam("price") int price,
                                 @RequestParam("quantity") int quantity,
+                                @RequestParam("size") String size,
                                 @RequestParam("file1") MultipartFile file1,
                                 @RequestParam("file2") MultipartFile file2,
                                 @RequestParam("file3") MultipartFile file3) throws IOException {
         Product product=new Product();
 
         product.setCategory(category);
+        product.setSubcategory(subcategory);
         product.setPrice(price);
         product.setDescription(description);
         product.setQuantity(quantity);
+        product.setSize(size);
 
         product.setPrimary_image(String.valueOf(imageService.saveImage(file).getId()));
 
@@ -55,12 +60,12 @@ public class ProductController {
         return product.getPrimary_image();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public Optional<Product> findById(@PathVariable Long id) {
         return productService.findById(id);
     }
 
-    @GetMapping("")
+    @GetMapping("/findAll")
     public List<Product> findAll() {
         return productService.findAllProduct();
     }
@@ -74,5 +79,18 @@ public class ProductController {
         }
         return productService.findProductsByCategoryAndSubcategory(category,subcategory);
     }
+
+
+    //this will be ued in index page to show the Latest product for all category
+    @GetMapping("find-latest")
+    public List<Product> findAllLatestByCategory(){
+        List<Product> list=new ArrayList<>();
+        list.add(productService.getLatestProductByCategory("saree"));
+        list.add(productService.getLatestProductByCategory("jeans"));
+        list.add(productService.getLatestProductByCategory("shirt"));
+        list.removeIf(element -> element == null);
+        return list;
+
+      }
 
 }

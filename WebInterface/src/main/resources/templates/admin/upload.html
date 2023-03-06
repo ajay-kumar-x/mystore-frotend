@@ -1,0 +1,46 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Upload Product</title>
+    <link rel="stylesheet" type="text/css" href="/admin/upload.css">
+    <script src="/admin/upload.js"></script>
+</head>
+<body onload="populateSubcategory()">
+
+<h1>Hello !</h1>
+<p>Upload Products to <span th:text="${appName}"></span></p>
+
+<form th:action="@{${product_service_url}+'/product/upload'}" method="post" enctype="multipart/form-data" >
+
+
+    <select name="category" id="category" onchange="populateSubcategory()">
+        <option value="saree">Saree</option>
+        <option value="kurti">Kurti</option>
+        <option value="jeans">Jeans</option>
+        <option value="shirt">Shirt</option>
+        <option value="t-shirt">T-Shirt</option>
+        <option value="blazzer">Blazzer</option>
+    </select>
+    <select name="subcategory" id="subcategory">
+    </select>
+
+    <input type="number" name="price" required placeholder="Price">
+    <input type="text" name="description" placeholder="description" required>
+    <input type="number" name="quantity" required min="1" max="50" placeholder="quantity">
+    <input type="text" name="size"  placeholder="size string">
+    <!-- Primary Image-->
+    <input type="file" name="file" id="primaryImage" accept="image/*"  onchange="checkFile(this)" required title="Primary Image"/>
+    <!-- Other images-->
+    <input type="file" name="file1" id="image1"  accept="image/*"  onchange="checkFile(this)" title="Image 1"/>
+    <input type="file" name="file2" id="image2" accept="image/*"   onchange="checkFile(this)" title="Image 2"/>
+    <input type="file" name="file3" id="image3" accept="image/*"   onchange="checkFile(this)" title="Image 3"/>
+<br>
+    <button type="submit">Upload</button>
+</form>
+
+
+
+
+
+
+</body>
+</html>

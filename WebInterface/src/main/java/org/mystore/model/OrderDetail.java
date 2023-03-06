@@ -73,6 +73,7 @@ public class OrderDetail {
  class Product {
     private int id;
     private String category;
+    private String subcategory;
     private String description;
     private double price;
     private String primary_image;
@@ -95,6 +96,14 @@ public class OrderDetail {
 
      public void setCategory(String category) {
          this.category = category;
+     }
+
+     public String getSubcategory() {
+         return subcategory;
+     }
+
+     public void setSubcategory(String subcategory) {
+         this.subcategory = subcategory;
      }
 
      public String getDescription() {

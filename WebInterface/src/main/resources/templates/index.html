@@ -28,7 +28,7 @@
     <!-- Image header -->
     <div class="w3-display-container w3-container">
         <img src="https://picsum.photos/200" alt="Jeans" style="width:100%">
-        <div class="w3-display-topleft w3-text-white" style="padding:24px 48px">
+        <div class="w3-display-topleft w3-text-" style="padding:24px 48px">
             <h1 class="w3-jumbo w3-hide-small">New arrivals</h1>
             <h1 class="w3-hide-large w3-hide-medium">New arrivals</h1>
             <h1 class="w3-hide-small">COLLECTION 2023</h1>
@@ -38,23 +38,29 @@
 
 
     <div class="w3-container w3-text-grey" id="shopnow">
-        <p>8 items</p>
+        <p>Product Categories</p>
     </div>
 
-
-
-
-
     <!-- Product grid -->
-    <div class="w3-row ">
+
+    <div class="w3-row" >
+        <div class="w3-col l3 s6" th:each="product : ${latestProduct}">
+            <div class="w3-container" >
+                <img th:src="@{${product_service_url}+'/images/' + ${product.get('primary_image').asText()}}"
+                     style="width:100%"  th:onclick="@{'window.location.href = \'/product?id=\' + \'' + ${product.get('id').asText()} + '\';'}">
+
+                <p th:if="${product.get('subcategory').asText() ne 'null' }" th:utext="${product.get('subcategory').asText() +' '+ product.get('category').asText()
+                +'<br/>'+product.get('description').asText() + '<br/> <b>₹' + product.get('price').asText()} +'</b>'"></p>
+
+                <p th:unless="${product.get('subcategory').asText() ne 'null' }" th:utext="${product.get('category').asText()
+                +'<br/>'+product.get('description').asText() + '<br/> <b>₹' + product.get('price').asText()} +'</b>'"></p>
+            </div>
+        </div>
+
         <div class="w3-col l3 s6">
             <div class="w3-container">
                 <img src="https://picsum.photos/200" style="width:100%">
-                <p>Jeans 1<br><b>$24.99</b></p>
-            </div>
-            <div class="w3-container">
-                <img src="https://picsum.photos/200" style="width:100%">
-                <p>Jeans 2<br><b>$19.99</b></p>
+                <p>Sample 1<br><b>₹700</b></p>
             </div>
         </div>
 
@@ -67,42 +73,13 @@
                         <button class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button>
                     </div>
                 </div>
-                <p>Jeans 3<br><b>$19.99</b></p>
-            </div>
-            <div class="w3-container">
-                <img src="https://picsum.photos/200" style="width:100%">
-                <p>Jeans 4<br><b>$20.50</b></p>
+                <p>Sample 2<br><b>₹500</b></p>
             </div>
         </div>
 
-        <div class="w3-col l3 s6">
-            <div class="w3-container">
-                <img src="https://picsum.photos/200" style="width:100%">
-                <p>Jeans 5<br><b>$20.50</b></p>
-            </div>
-            <div class="w3-container">
-                <div class="w3-display-container">
-                    <img src="https://picsum.photos/200" style="width:100%">
-                    <span class="w3-tag w3-display-topleft">Sale</span>
-                    <div class="w3-display-middle w3-display-hover">
-                        <button class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button>
-                    </div>
-                </div>
-                <p>Jeans 6<br><b class="w3-text-red">$14.99</b></p>
-            </div>
-        </div>
+    </div>  <!--w3-row end-->
 
-        <div class="w3-col l3 s6">
-            <div class="w3-container">
-                <img src="https://picsum.photos/200" style="width:100%">
-                <p>Jeans 7<br><b>$14.99</b></p>
-            </div>
-            <div class="w3-container">
-                <img src="https://picsum.photos/200" style="width:100%">
-                <p>Jeans 8<br><b>$24.99</b></p>
-            </div>
-        </div>
-    </div>
+
 
 
 

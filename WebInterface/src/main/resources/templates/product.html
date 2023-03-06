@@ -30,9 +30,13 @@
   <div class="w3-display-container w3-container">
                                     <!--product image-->
     <img th:src="@{${product_service_url}+'/images/' + ${product.get('primary_image').asText()}}" style="width:100%">
-                                 <!--Description and price-->
-    <p th:utext="${product.get('description').asText() + '<br/> <b>₹ ' + product.get('price').asText()} +'</b>'"></p>
+                                 <!--Subcategory Category, Description and price-->
 
+    <p th:if="${product.get('subcategory').asText() ne 'null' }" th:utext="${product.get('subcategory').asText() +' '+ product.get('category').asText()
+                +'<br/>'+product.get('description').asText() + '<br/> <b>₹' + product.get('price').asText()} +'</b>'"></p>
+
+    <p th:unless="${product.get('subcategory').asText() ne 'null' }" th:utext="${product.get('category').asText()
+                +'<br/>'+product.get('description').asText() + '<br/> <b>₹' + product.get('price').asText()} +'</b>'"></p>
 
          <!--This will show the size dropdown if the size string is not null-->
     <div th:if="${product.get('size').asText() ne 'null' and  product.get('size').asText() ne ''}">
@@ -40,6 +44,7 @@
       <select name="size" id="size">
         <option th:each="s : ${#strings.arraySplit(product.get('size').asText(), ' ')}" th:value="${s}" th:text="${s}"></option>
       </select>
+
     </div>
     <!-- Quantity will be displayed when the Size string is null -->
     <div th:if="${(product.get('size').asText() eq 'null' or product.get('size').asText() eq '' ) and product.get('quantity').asInt() >=1}">
@@ -48,6 +53,7 @@
           <option th:each="i : ${#numbers.sequence(1,product.get('quantity').asInt())}" th:value="${i}" th:text="${i}"></option>
         </select>
     </div>
+    <br>
 
     <!--This will be used in javascript function to save the product detail to Cart-->
     <script th:inline="javascript"> var productDetail = [[${product}]]; </script>
@@ -92,7 +98,12 @@
       <div class="w3-container" >
         <img th:src="@{${product_service_url}+'/images/' + ${product.get('primary_image').asText()}}"
              style="width:100%"  th:onclick="@{'window.location.href = \'/product?id=\' + \'' + ${product.get('id').asText()} + '\';'}">
-        <p th:utext="${product.get('description').asText() + '<br/> <b>₹' + product.get('price').asText()} +'</b>'"></p>
+
+        <p th:if="${product.get('subcategory').asText() ne 'null' }" th:utext="${product.get('subcategory').asText() +' '+ product.get('category').asText()
+                +'<br/>'+product.get('description').asText() + '<br/> <b>₹' + product.get('price').asText()} +'</b>'"></p>
+
+        <p th:unless="${product.get('subcategory').asText() ne 'null' }" th:utext="${product.get('category').asText()
+                +'<br/>'+product.get('description').asText() + '<br/> <b>₹' + product.get('price').asText()} +'</b>'"></p>
       </div>
     </div>
   </div>

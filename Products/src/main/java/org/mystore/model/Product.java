@@ -20,6 +20,22 @@ public class Product {
 
     private String size;
 
+    public Product(Long id, String category, String subcategory, int price, String description, int quantity, String primary_image, String other_images, String size) {
+        this.id = id;
+        this.category = category;
+        this.subcategory = subcategory;
+        this.price = price;
+        this.description = description;
+        this.quantity = quantity;
+        this.primary_image = primary_image;
+        this.other_images = other_images;
+        this.size = size;
+    }
+
+    // Default constructor
+    public Product() {}
+
+
     public String getSize() {
         return size;
     }

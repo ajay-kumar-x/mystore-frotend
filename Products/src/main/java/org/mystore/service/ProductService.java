@@ -33,6 +33,10 @@ public class ProductService {
         return productRepository.findByCategoryAndSubcategoryOrderByIdDesc(category, subcategory);
     }
 
+    public Product getLatestProductByCategory(String category) {
+        return productRepository.findFirstByCategoryOrderByIdDesc(category);
+    }
+
     public Product updateProduct(Product updatedProduct) {
         Product savedProduct = productRepository.save(updatedProduct);
         return savedProduct;

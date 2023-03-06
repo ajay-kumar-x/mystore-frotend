@@ -20,12 +20,25 @@ public class Controller {
     @Value("${spring.application.name}")
     String appName;
 
-    static final String PRODUCT_SERVICE_URL="http://192.168.1.2:8080";
+   @Value("${backend.url}")
+   String PRODUCT_SERVICE_URL;
 
 
 
     @GetMapping("/")
-    public String homePage(Model model) {
+    public String homePage(Model model) throws JsonProcessingException {
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        String urlForLatestProduct = PRODUCT_SERVICE_URL+"/product/find-latest";
+
+        String allLatestProductString = restTemplate.getForObject(urlForLatestProduct, String.class); //All latest product detail in string format
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode allLatestProductNode=objectMapper.readTree(allLatestProductString);
+
+          //System.out.println(allLatestProductNode);
+        model.addAttribute("latestProduct",allLatestProductNode);
+        model.addAttribute("product_service_url",PRODUCT_SERVICE_URL);
         model.addAttribute("appName", appName);
         model.addAttribute("productSearched","Home");
         return "index";
@@ -59,7 +72,7 @@ public class Controller {
     public String getProduct(@RequestParam("id") int id,Model model) throws JsonProcessingException {
         RestTemplate restTemplate = new RestTemplate();
 
-        String url = PRODUCT_SERVICE_URL+"/product/"+id;
+        String url = PRODUCT_SERVICE_URL+"/product/id/"+id;
         String response = restTemplate.getForObject(url, String.class); //product detail in string format
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -121,12 +134,12 @@ public class Controller {
 
 
 
-    //.................................for  ADMIN.........................................
+    //.................................ADMIN.............................................
     @GetMapping("/upload")
     public String productUpload(Model model) {
         model.addAttribute("appName", appName);
         model.addAttribute("product_service_url",PRODUCT_SERVICE_URL);
-        return "upload";
+        return "/admin/upload";
     }
 
 }

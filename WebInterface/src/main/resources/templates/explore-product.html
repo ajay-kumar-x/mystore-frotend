@@ -35,8 +35,12 @@
         <div class="w3-container" >
             <img th:src="@{${product_service_url}+'/images/' + ${product.get('primary_image').asText()}}"
                  style="width:100%"  th:onclick="@{'window.location.href = \'/product?id=\' + \'' + ${product.get('id').asText()} + '\';'}">
-            <p th:utext="${product.get('description').asText() + '<br/> <b>₹' + product.get('price').asText()} +'</b>'"></p>
 
+            <p th:if="${product.get('subcategory').asText() ne 'null' }" th:utext="${product.get('subcategory').asText() +' '+ product.get('category').asText()
+                +'<br/>'+product.get('description').asText() + '<br/> <b>₹' + product.get('price').asText()} +'</b>'"></p>
+
+            <p th:unless="${product.get('subcategory').asText() ne 'null' }" th:utext="${product.get('category').asText()
+                +'<br/>'+product.get('description').asText() + '<br/> <b>₹' + product.get('price').asText()} +'</b>'"></p>
         </div>
     </div>
 </div>

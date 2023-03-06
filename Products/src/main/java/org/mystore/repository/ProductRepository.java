@@ -10,5 +10,6 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<Product,Long> {
     List<Product> findByCategoryOrderByIdDesc(String category);
     List<Product> findByCategoryAndSubcategoryOrderByIdDesc(String category, String subcategory);
+    Product findFirstByCategoryOrderByIdDesc(String category);
 
 }

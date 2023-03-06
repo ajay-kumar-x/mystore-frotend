@@ -5,7 +5,7 @@ function addToCart(product,str){
             }
             // Get the size or quantity select elements
 
-            const item={id:product['id'],category:product['category'],description:product['description'], price:product['price'],primary_image:product['primary_image']};
+            const item={id:product['id'],category:product['category'],subcategory:product['subcategory'],description:product['description'], price:product['price'],primary_image:product['primary_image']};
 
               if(document.getElementById('size')==null){
                   item.size="all";
