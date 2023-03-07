@@ -1,0 +1,17 @@
+services:
+  products:
+    build:
+      context: ./Mystore/Products
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+  webinterface:
+    build:
+      context: ./Mystore/WebInterface
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+  web:
+    env:
+      PORT: 8080
+    start_cmd: docker-compose up
