@@ -9,7 +9,7 @@ WORKDIR /productmodule
 #COPY pom.xml /productmodule
 #COPY /src /productmodule/src
 
-COPY . /productmodule
+COPY ./Products /productmodule
 RUN mvn package
 
 EXPOSE 8080
