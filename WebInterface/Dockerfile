@@ -6,8 +6,8 @@
 
 FROM maven:3.8.7-openjdk-18-slim
 WORKDIR /webmodule
-COPY pom.xml /webmodule
-COPY src /webmodule/src
+COPY ./WebInterface/pom.xml /webmodule
+COPY ./WebInterface/src /webmodule/src
 RUN mvn package
 
 EXPOSE 80
