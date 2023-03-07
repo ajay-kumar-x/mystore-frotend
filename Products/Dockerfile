@@ -7,7 +7,8 @@
 FROM maven:3.8.7-openjdk-18-slim
 WORKDIR /productmodule
 COPY pom.xml /productmodule
-COPY src /productmodule
+COPY /src /productmodule/src
+
 RUN mvn package
 
 EXPOSE 8080
