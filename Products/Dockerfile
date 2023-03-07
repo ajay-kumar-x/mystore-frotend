@@ -4,13 +4,11 @@
 #ENTRYPOINT ["java","-jar", "Products-1.0-SNAPSHOT-jar-with-dependencies.jar"]
 
 
-FROM maven:3.8.7-openjdk-18-slim AS build
-WORKDIR /app
-COPY . /app
-RUN mvn -f pom.xml clean package -DskipTests
+FROM maven:3.8.7-openjdk-18-slim
+WORKDIR /productmodule
+COPY pom.xml /productmodule
+COPY src /productmodule/src
+RUN mvn package
 
-FROM openjdk:18
-WORKDIR /app
-COPY --from=build /app/Products/target/Products-1.0-SNAPSHOT-jar-with-dependencies.jar Products.jar
-EXPOSE 8081
-CMD ["java", "-jar", "Products.jar"]
+EXPOSE 8080
+CMD ["java", "-jar", "target/Products-1.0-SNAPSHOT-jar-with-dependencies.jar"]

@@ -139,7 +139,7 @@ public class Controller {
     public String productUpload(Model model) {
         model.addAttribute("appName", appName);
         model.addAttribute("product_service_url",PRODUCT_SERVICE_URL);
-        return "/admin/upload";
+        return "admin/upload";
     }
 
 }
