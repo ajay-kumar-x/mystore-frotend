@@ -61,10 +61,12 @@
             <p><input class="w3-input w3-border" type="tel" id="mobile-number-to-track" placeholder="Enter mobileNumber to track order" required></p>
             <button type="button" class="w3-button w3-padding-large w3-red w3-margin-bottom" onclick="trackOrder()" >Track</button>
 <!--            onclick="document.getElementById('track-order').style.display='none'"-->
+            <!--This will be used in javascript function to save the product detail to Cart-->
+            <script th:inline="javascript"> var backendurl = [[${product_service_url}]]; </script>
             <script>
                 function trackOrder(){
                  var mobile_number = document.getElementById("mobile-number-to-track").value;
-                 window.location.href ='https://shyamcloth-backend.onrender.com/orders/track/' + mobile_number;
+                 window.location.href =backendurl+'/orders/track/' + mobile_number;
                 }
             </script>
         </div>
